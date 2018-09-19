@@ -1,6 +1,7 @@
 package com.bigkoo.pickerviewdemo.bean;
 
-import com.bigkoo.pickerview.model.IPickerViewData;
+
+import com.contrarywind.interfaces.IPickerViewData;
 
 /**
  * Created by KyuYi on 2017/3/2.
@@ -37,4 +38,6 @@ public class CardBean implements IPickerViewData {
     public String getPickerViewText() {
         return cardNo;
     }
+
 }
+

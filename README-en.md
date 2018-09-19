@@ -1,6 +1,14 @@
 
 # Android-PickerView
 
+
+
+[![API](https://img.shields.io/badge/API-9%2B-brightgreen.svg)](https://android-arsenal.com/api?level=9) 
+[![license](https://img.shields.io/hexpm/l/plug.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+
+#### Show some :heart: and :stars: the repo to support the project
+[![GitHub stars](https://img.shields.io/github/stars/Bigkoo/Android-PickerView.svg?style=social)](https://github.com/Bigkoo/Android-PickerView/stargazers) [![GitHub forks](https://img.shields.io/github/forks/Bigkoo/Android-PickerView.svg?style=social)](https://github.com/Bigkoo/Android-PickerView/network) [![GitHub watchers](https://img.shields.io/github/watchers/Bigkoo/Android-PickerView.svg?style=social)](https://github.com/Bigkoo/Android-PickerView/watchers)
+
 #### [中文文档](https://github.com/Bigkoo/Android-PickerView/blob/master/README.md)
 
 ## Introduction
@@ -31,7 +39,7 @@ and support for the linkage, dialog . It's very easy to use ,  you also can cust
 ### Gradle
 
 ```java
-compile 'com.contrarywind:Android-PickerView:3.2.4'
+compile 'com.contrarywind:Android-PickerView:4.1.6'
 ```
 
 ### Maven
@@ -40,7 +48,7 @@ compile 'com.contrarywind:Android-PickerView:3.2.4'
 <dependency>
 <groupId>com.contrarywind</groupId>
 <artifactId>Android-PickerView</artifactId>
-<version>3.2.4</version>
+<version>4.1.2</version>
 <type>pom</type>
 </dependency>
 ```
@@ -49,7 +57,7 @@ compile 'com.contrarywind:Android-PickerView:3.2.4'
 
 ```java
 //TimePicker
- pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+ pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date,View v) {//Callback
                 tvTime.setText(getTime(date));
@@ -61,7 +69,7 @@ compile 'com.contrarywind:Android-PickerView:3.2.4'
 
 ```java
 //OptionsPicker
- pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+ pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
                 ////Callback
@@ -73,12 +81,29 @@ compile 'com.contrarywind:Android-PickerView:3.2.4'
         }).build();
 
  //pvOptions.setPicker(options1Items);
- //pvOptions.setPicker(options1Items, options2Items);
- pvOptions.setPicker(options1Items, options2Items, options3Items);
+ pvOptions.setPicker(options1Items, options2Items);
+ //pvOptions.setPicker(options1Items, options2Items, options3Items);
  pvOptions.show();
 ```
 ## Just so easy ~
 
+
+### Notes（2017-7-10）
+- when we start setting the date, we need to pay special attention.
+
+- reason: the internal component of the Calendar adds 1 processing, which made the month's number of  count reduced one.
+- error usage case:
+
+>StartDate.set (2013,1,1);
+
+>EndDate.set (2020,12,31);
+
+- correct use case:
+
+>StartDate.set (2013,0,1);
+
+>EndDate.set (2020,11,31);
+</br>
 
 
 If the default style does not meet your expectations, You can also customize attributes to apply
@@ -87,17 +112,17 @@ If the default style does not meet your expectations, You can also customize att
 ```java
  Calendar selectedDate = Calendar.getInstance();
  Calendar startDate = Calendar.getInstance();
- startDate.set(2013,1,1);
+ startDate.set(2013,0,1);
  Calendar endDate = Calendar.getInstance();
- endDate.set(2020,1,1);
+ endDate.set(2020,11,1);
 
- pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+ pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
-            public void onTimeSelect(Date date,View v) {//Callback
+            public void onTimeSelect(Date date,View v) {//callback
                 tvTime.setText(getTime(date));
             }
         })
-                .setType(TimePickerView.Type.ALL)//default all
+                .setType(new boolean[]{false, false, false, true, true, false})// type of date 
                 .setCancelText("Cancel")
                 .setSubmitText("Sure")
                 .setContentSize(18)
@@ -108,16 +133,15 @@ If the default style does not meet your expectations, You can also customize att
                 .setTitleColor(Color.BLACK)
                 .setSubmitColor(Color.BLUE)
                 .setCancelColor(Color.BLUE)
-                .setTitleBgColor(0xFF666666)//Night mode
-                .setBgColor(0xFF333333)//Night mode
-                .setDate(selectedDate)// default is System time
+                .setTitleBgColor(0xFF666666)//night mode
+                .setBgColor(0xFF333333)//night mode
                 .setRangDate(startDate,endDate)
                 .setLabel("year","month","day","hours","mins","seconds")
                 .build();
 ```
 
 ```java
-pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
                 ////Callback
@@ -135,8 +159,8 @@ pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptions
                 .setTitleColor(Color.BLACK)
                 .setSubmitColor(Color.BLUE)
                 .setCancelColor(Color.BLUE)
-                .setTitleBgColor(0xFF666666)//Night mode
-                .setBgColor(0xFF444444)//Night mode
+                .setTitleBgColor(0xFF666666)//night mode
+                .setBgColor(0xFF444444)//night mode
                 .setContentTextSize(18)
                 .setLinkage(false)
                 .isCenterLabel(false) //default is true , if you choose false , the label text will add to all item ContentText right
@@ -144,6 +168,7 @@ pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptions
                 .setCyclic(false, false, false)
                 .setSelectOptions(0, 0, 0)  //default options
                 .setOutSideCancelable(false)//dismiss， default is true
+                .isRestoreItem(true)// restore option with first item when select changed。
                 .build();
 
         pvOptions.setPicker(options1Items, options2Items, options3Items);
@@ -162,12 +187,12 @@ pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptions
         Calendar endDate = Calendar.getInstance();
         endDate.set(2019,2,28);
 
-        pvCustomTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
+        pvCustomTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
             @Override
             public void onTimeSelect(Date date, View v) {//call back
                 btn_CustomTime.setText(getTime(date));
             }
-        })      .setType(TimePickerView.Type.YEAR_MONTH_DAY)
+        })       .setType(new boolean[]{true, true, true, false, false, false})// year - month - day
                 .setDate(selectedDate)
                 .setRangDate(startDate,endDate)
                 .setLayoutRes(R.layout.pickerview_custom_time, new CustomListener() {
@@ -196,10 +221,10 @@ pvOptions = new  OptionsPickerView.Builder(this, new OptionsPickerView.OnOptions
     }
 ```
 
-## If you do need to set the no linkage data：
+## If you need to set the non-linkage data：
 
 ```java
-pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOptionsSelectListener() {
+pvNoLinkOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
 
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
@@ -215,7 +240,7 @@ pvNoLinkOptions = new OptionsPickerView.Builder(this, new OptionsPickerView.OnOp
         pvNoLinkOptions.show();
 ```
 
-## For more detail, pelase refer to the Demo code, If there is still doubt about you, pelase [New Issue](https://github.com/Bigkoo/Android-PickerView/issues) 
+## For more detail, please refer to the Demo code, If there is still doubt about you, please [New Issue](https://github.com/Bigkoo/Android-PickerView/issues) 
 
 ###  [Here is demo code](https://github.com/Bigkoo/Android-PickerView/blob/master/app/src/main/java/com/bigkoo/pickerviewdemo/MainActivity.java)
 
