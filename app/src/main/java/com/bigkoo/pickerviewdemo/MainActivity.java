@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setItemVisibleCount(5) //若设置偶数，实际值会加1（比如设置6，则最大可见条目为7）
                 .setLineSpacingMultiplier(2.0f)
                 .isAlphaGradient(true)
+                .isOpen3D(false)
                 .build();
 
         Dialog mDialog = pvTime.getDialog();
@@ -434,6 +435,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 })
                 .setItemVisibleCount(5)
+                .isOpen3D(false)
                 // .setSelectOptions(0, 1, 1)
                 .build();
         pvNoLinkOptions.setNPicker(food, clothes, computer);

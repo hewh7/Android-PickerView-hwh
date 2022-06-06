@@ -92,7 +92,8 @@ public class WheelTime {
     private void setLunar(int year, final int month, int day, boolean isLeap, int h, int m, int s) {
         // 年
         wv_year = (WheelView) view.findViewById(R.id.year);
-        wv_year.setAdapter(new ArrayWheelAdapter(ChinaDate.getYears(startYear, endYear)));// 设置"年"的显示数据
+        wv_year.setAdapter(new ArrayWheelAdapter(ChinaDate.getYears(startYear, endYear)));//
+        // 设置"年"的显示数据
         wv_year.setLabel("");// 添加文字
         wv_year.setCurrentItem(year - startYear);// 初始化时显示的数据
         wv_year.setGravity(gravity);
@@ -486,9 +487,11 @@ public class WheelTime {
                 } else if (currentYear == endYear) {
                     if (month_num == endMonth) {
                         //重新设置日
-                        setReDay(currentYear, wv_month.getCurrentItem() + 1, 1, endDay, list_big, list_little);
+                        setReDay(currentYear, wv_month.getCurrentItem() + 1, 1, endDay, list_big,
+                                list_little);
                     } else {
-                        setReDay(currentYear, wv_month.getCurrentItem() + 1, 1, 31, list_big, list_little);
+                        setReDay(currentYear, wv_month.getCurrentItem() + 1, 1, 31, list_big,
+                                list_little);
                     }
 
                 } else {
@@ -532,36 +535,36 @@ public class WheelTime {
     }
 
 
-    private void setReDay(int year_num, int monthNum, int startD, int endD, List<String> list_big, List<String> list_little) {
+    private void setReDay(int year_num, int monthNum, int startD, int endD, List<String> list_big
+            , List<String> list_little) {
         int currentItem = wv_day.getCurrentItem();
 
-//        int maxItem;
+        //        int maxItem;
         if (list_big.contains(String.valueOf(monthNum))) {
             if (endD > 31) {
                 endD = 31;
             }
             wv_day.setAdapter(new NumericWheelAdapter(startD, endD));
-//            maxItem = endD;
+            //            maxItem = endD;
         } else if (list_little.contains(String.valueOf(monthNum))) {
             if (endD > 30) {
                 endD = 30;
             }
             wv_day.setAdapter(new NumericWheelAdapter(startD, endD));
-//            maxItem = endD;
+            //            maxItem = endD;
         } else {
-            if ((year_num % 4 == 0 && year_num % 100 != 0)
-                    || year_num % 400 == 0) {
+            if ((year_num % 4 == 0 && year_num % 100 != 0) || year_num % 400 == 0) {
                 if (endD > 29) {
                     endD = 29;
                 }
                 wv_day.setAdapter(new NumericWheelAdapter(startD, endD));
-//                maxItem = endD;
+                //                maxItem = endD;
             } else {
                 if (endD > 28) {
                     endD = 28;
                 }
                 wv_day.setAdapter(new NumericWheelAdapter(startD, endD));
-//                maxItem = endD;
+                //                maxItem = endD;
             }
         }
 
@@ -582,7 +585,8 @@ public class WheelTime {
     }
 
 
-    public void setLabels(String label_year, String label_month, String label_day, String label_hours, String label_mins, String label_seconds) {
+    public void setLabels(String label_year, String label_month, String label_day,
+                          String label_hours, String label_mins, String label_seconds) {
         if (isLunarCalendar) {
             return;
         }
@@ -654,28 +658,13 @@ public class WheelTime {
            /* int i = wv_month.getCurrentItem() + startMonth;
             System.out.println("i:" + i);*/
             if ((wv_month.getCurrentItem() + startMonth) == startMonth) {
-                sb.append((wv_year.getCurrentItem() + startYear)).append("-")
-                        .append((wv_month.getCurrentItem() + startMonth)).append("-")
-                        .append((wv_day.getCurrentItem() + startDay)).append(" ")
-                        .append(wv_hours.getCurrentItem()).append(":")
-                        .append(wv_minutes.getCurrentItem()).append(":")
-                        .append(wv_seconds.getCurrentItem());
+                sb.append((wv_year.getCurrentItem() + startYear)).append("-").append((wv_month.getCurrentItem() + startMonth)).append("-").append((wv_day.getCurrentItem() + startDay)).append(" ").append(wv_hours.getCurrentItem()).append(":").append(wv_minutes.getCurrentItem()).append(":").append(wv_seconds.getCurrentItem());
             } else {
-                sb.append((wv_year.getCurrentItem() + startYear)).append("-")
-                        .append((wv_month.getCurrentItem() + startMonth)).append("-")
-                        .append((wv_day.getCurrentItem() + 1)).append(" ")
-                        .append(wv_hours.getCurrentItem()).append(":")
-                        .append(wv_minutes.getCurrentItem()).append(":")
-                        .append(wv_seconds.getCurrentItem());
+                sb.append((wv_year.getCurrentItem() + startYear)).append("-").append((wv_month.getCurrentItem() + startMonth)).append("-").append((wv_day.getCurrentItem() + 1)).append(" ").append(wv_hours.getCurrentItem()).append(":").append(wv_minutes.getCurrentItem()).append(":").append(wv_seconds.getCurrentItem());
             }
 
         } else {
-            sb.append((wv_year.getCurrentItem() + startYear)).append("-")
-                    .append((wv_month.getCurrentItem() + 1)).append("-")
-                    .append((wv_day.getCurrentItem() + 1)).append(" ")
-                    .append(wv_hours.getCurrentItem()).append(":")
-                    .append(wv_minutes.getCurrentItem()).append(":")
-                    .append(wv_seconds.getCurrentItem());
+            sb.append((wv_year.getCurrentItem() + startYear)).append("-").append((wv_month.getCurrentItem() + 1)).append("-").append((wv_day.getCurrentItem() + 1)).append(" ").append(wv_hours.getCurrentItem()).append(":").append(wv_minutes.getCurrentItem()).append(":").append(wv_seconds.getCurrentItem());
         }
 
         return sb.toString();
@@ -707,12 +696,7 @@ public class WheelTime {
         int day = wv_day.getCurrentItem() + 1;
         int[] solar = LunarCalendar.lunarToSolar(year, month, day, isLeapMonth);
 
-        sb.append(solar[0]).append("-")
-                .append(solar[1]).append("-")
-                .append(solar[2]).append(" ")
-                .append(wv_hours.getCurrentItem()).append(":")
-                .append(wv_minutes.getCurrentItem()).append(":")
-                .append(wv_seconds.getCurrentItem());
+        sb.append(solar[0]).append("-").append(solar[1]).append("-").append(solar[2]).append(" ").append(wv_hours.getCurrentItem()).append(":").append(wv_minutes.getCurrentItem()).append(":").append(wv_seconds.getCurrentItem());
         return sb.toString();
     }
 
@@ -896,5 +880,14 @@ public class WheelTime {
         wv_hours.setAlphaGradient(isAlphaGradient);
         wv_minutes.setAlphaGradient(isAlphaGradient);
         wv_seconds.setAlphaGradient(isAlphaGradient);
+    }
+
+    public void isOpen3D(boolean isOpen3D) {
+        wv_day.setOpen3D(isOpen3D);
+        wv_month.setOpen3D(isOpen3D);
+        wv_year.setOpen3D(isOpen3D);
+        wv_hours.setOpen3D(isOpen3D);
+        wv_minutes.setOpen3D(isOpen3D);
+        wv_seconds.setOpen3D(isOpen3D);
     }
 }

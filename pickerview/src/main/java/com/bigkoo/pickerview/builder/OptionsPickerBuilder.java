@@ -67,7 +67,7 @@ public class OptionsPickerBuilder {
         return this;
     }
 
-    public OptionsPickerBuilder setSelectAreaColor(int selectAreaColor){
+    public OptionsPickerBuilder setSelectAreaColor(int selectAreaColor) {
         mPickerOptions.selectAreaColor = selectAreaColor;
         return this;
     }
@@ -236,7 +236,8 @@ public class OptionsPickerBuilder {
         return this;
     }
 
-    public OptionsPickerBuilder setTextXOffset(int xoffset_one, int xoffset_two, int xoffset_three) {
+    public OptionsPickerBuilder setTextXOffset(int xoffset_one, int xoffset_two,
+                                               int xoffset_three) {
         mPickerOptions.x_offset_one = xoffset_one;
         mPickerOptions.x_offset_two = xoffset_two;
         mPickerOptions.x_offset_three = xoffset_three;
@@ -289,6 +290,16 @@ public class OptionsPickerBuilder {
         return this;
     }
 
+    /**
+     * 是否开启3D
+     *
+     * @param isOpen3D
+     * @return
+     */
+    public OptionsPickerBuilder isOpen3D(boolean isOpen3D) {
+        mPickerOptions.isOpen3D = isOpen3D;
+        return this;
+    }
 
     public <T> OptionsPickerView<T> build() {
         return new OptionsPickerView<>(mPickerOptions);

@@ -262,7 +262,8 @@ public class TimePickerBuilder {
     }
 
 
-    public TimePickerBuilder setLabel(String label_year, String label_month, String label_day, String label_hours, String label_mins, String label_seconds) {
+    public TimePickerBuilder setLabel(String label_year, String label_month, String label_day,
+                                      String label_hours, String label_mins, String label_seconds) {
         mPickerOptions.label_year = label_year;
         mPickerOptions.label_month = label_month;
         mPickerOptions.label_day = label_day;
@@ -283,8 +284,9 @@ public class TimePickerBuilder {
      * @param x_offset_seconds 秒
      * @return
      */
-    public TimePickerBuilder setTextXOffset(int x_offset_year, int x_offset_month, int x_offset_day,
-                                            int x_offset_hours, int x_offset_minutes, int x_offset_seconds) {
+    public TimePickerBuilder setTextXOffset(int x_offset_year, int x_offset_month,
+                                            int x_offset_day, int x_offset_hours,
+                                            int x_offset_minutes, int x_offset_seconds) {
         mPickerOptions.x_offset_year = x_offset_year;
         mPickerOptions.x_offset_month = x_offset_month;
         mPickerOptions.x_offset_day = x_offset_day;
@@ -305,6 +307,17 @@ public class TimePickerBuilder {
      */
     public TimePickerBuilder setTimeSelectChangeListener(OnTimeSelectChangeListener listener) {
         mPickerOptions.timeSelectChangeListener = listener;
+        return this;
+    }
+
+    /**
+     * 是否开启3D
+     *
+     * @param isOpen3D
+     * @return
+     */
+    public TimePickerBuilder isOpen3D(boolean isOpen3D) {
+        mPickerOptions.isOpen3D = isOpen3D;
         return this;
     }
 

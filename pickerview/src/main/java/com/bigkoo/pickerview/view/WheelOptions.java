@@ -436,4 +436,10 @@ public class WheelOptions<T> {
         wv_option2.setAlphaGradient(isAlphaGradient);
         wv_option3.setAlphaGradient(isAlphaGradient);
     }
+
+    public void isOpen3D(boolean isOpen3D){
+        wv_option1.setOpen3D(isOpen3D);
+        wv_option2.setOpen3D(isOpen3D);
+        wv_option3.setOpen3D(isOpen3D);
+    }
 }
