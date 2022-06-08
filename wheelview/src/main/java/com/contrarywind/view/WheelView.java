@@ -74,6 +74,7 @@ public class WheelView extends View {
 
 
     private Typeface typeface = Typeface.MONOSPACE;//字体样式，默认是等宽字体
+    private Typeface typefaceOut = Typeface.MONOSPACE;//字体样式，默认是等宽字体
     private int textColorOut;
     private int textColorCenter;
     private int dividerColor;
@@ -208,6 +209,7 @@ public class WheelView extends View {
         paintIndicator = new Paint();
         paintIndicator.setColor(dividerColor);
         paintIndicator.setAntiAlias(true);
+        paintIndicator.setStrokeWidth(dividerWidth);
 
         paintSelectArea = new Paint();
         paintSelectArea.setColor(selectAreaColor);
@@ -312,10 +314,13 @@ public class WheelView extends View {
         isLoop = cyclic;
     }
 
-    public final void setTypeface(Typeface font) {
+    public final void setTypefaceCenter(Typeface font) {
         typeface = font;
-        paintOuterText.setTypeface(typeface);
         paintCenterText.setTypeface(typeface);
+    }
+    public final void setTypefaceOut(Typeface font) {
+        typefaceOut = font;
+        paintOuterText.setTypeface(typefaceOut);
     }
 
     public final void setTextSize(float size) {
@@ -435,6 +440,7 @@ public class WheelView extends View {
                 startX = 10;
             }
             endX = measuredWidth - startX;
+            paintIndicator.setStrokeWidth(dividerWidth);
             canvas.drawLine(startX, firstLineY, endX, firstLineY, paintIndicator);
             canvas.drawLine(startX, secondLineY, endX, secondLineY, paintIndicator);
             canvas.drawRect(startX,firstLineY,endX,secondLineY, paintSelectArea);

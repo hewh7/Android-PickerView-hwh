@@ -270,10 +270,20 @@ public class WheelOptions<T> {
      *
      * @param font 系统提供的几种样式
      */
-    public void setTypeface(Typeface font) {
-        wv_option1.setTypeface(font);
-        wv_option2.setTypeface(font);
-        wv_option3.setTypeface(font);
+    public void setTypefaceCenter(Typeface font) {
+        wv_option1.setTypefaceCenter(font);
+        wv_option2.setTypefaceCenter(font);
+        wv_option3.setTypefaceCenter(font);
+    }
+    /**
+     * 设置字体样式
+     *
+     * @param font 系统提供的几种样式
+     */
+    public void setTypefaceOut(Typeface font) {
+        wv_option1.setTypefaceOut(font);
+        wv_option2.setTypefaceOut(font);
+        wv_option3.setTypefaceOut(font);
     }
 
     /**
@@ -356,6 +366,16 @@ public class WheelOptions<T> {
         wv_option1.setDividerColor(dividerColor);
         wv_option2.setDividerColor(dividerColor);
         wv_option3.setDividerColor(dividerColor);
+    }
+    /**
+     * 设置分割线的宽度
+     *
+     * @param dividerWidth
+     */
+    public void setDividerWidth(int dividerWidth) {
+        wv_option1.setDividerWidth(dividerWidth);
+        wv_option2.setDividerWidth(dividerWidth);
+        wv_option3.setDividerWidth(dividerWidth);
     }
 
     /**

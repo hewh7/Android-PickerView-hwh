@@ -806,6 +806,15 @@ public class WheelTime {
         wv_seconds.setDividerColor(dividerColor);
     }
 
+    public void setDividerWidth(int dividerWidth) {
+        wv_day.setDividerWidth(dividerWidth);
+        wv_month.setDividerWidth(dividerWidth);
+        wv_year.setDividerWidth(dividerWidth);
+        wv_hours.setDividerWidth(dividerWidth);
+        wv_minutes.setDividerWidth(dividerWidth);
+        wv_seconds.setDividerWidth(dividerWidth);
+    }
+
     /**
      * 设置分割线的类型
      *
