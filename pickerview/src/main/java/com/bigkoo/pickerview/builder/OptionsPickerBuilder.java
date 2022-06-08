@@ -178,6 +178,16 @@ public class OptionsPickerBuilder {
     }
 
     /**
+     * Set item divider line width.
+     *
+     * @param dividerWidth width px.
+     */
+    public OptionsPickerBuilder setDividerWidth(int dividerWidth) {
+        mPickerOptions.dividerWidth = dividerWidth;
+        return this;
+    }
+
+    /**
      * Set item divider line type.
      *
      * @param dividerType enum Type {@link WheelView.DividerType}
@@ -207,8 +217,12 @@ public class OptionsPickerBuilder {
         return this;
     }
 
-    public OptionsPickerBuilder setTypeface(Typeface font) {
-        mPickerOptions.font = font;
+    public OptionsPickerBuilder setTypefaceCenter(Typeface font) {
+        mPickerOptions.typefaceCenter = font;
+        return this;
+    }
+    public OptionsPickerBuilder setTypefaceOut(Typeface font) {
+        mPickerOptions.typefaceOut = font;
         return this;
     }
 
