@@ -584,7 +584,7 @@ public class WheelView extends View {
                 canvas.save();
                 //itemHeightOffset  默认为偏移原来位置的点的距离
                 float translateY = itemHeight * (counter - 1) - itemHeightOffset;
-                translateY = (float) (translateY + ((itemHeight - maxTextHeight) / 2D));
+                translateY = (float) (translateY + ((itemHeight - maxTextHeight) / 2D)) - (textSize >> 3);
                 canvas.translate(0.0F, translateY);//右下正坐标系  translateY>0 向下移动坐标系
 
                 //获取内容文字

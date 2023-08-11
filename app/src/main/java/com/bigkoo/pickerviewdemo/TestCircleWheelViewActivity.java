@@ -46,5 +46,6 @@ public class TestCircleWheelViewActivity extends AppCompatActivity {
                 Toast.makeText(TestCircleWheelViewActivity.this, "" + mOptionsItems.get(index), Toast.LENGTH_SHORT).show();
             }
         });
+        wheelView.setOpen3D(false);
     }
 }
